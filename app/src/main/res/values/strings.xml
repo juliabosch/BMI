@@ -14,5 +14,13 @@
     <string name="dafault_bmi">Your bmi</string>
     <string name="default_range">Your range</string>
     <string name="default_description">Your BMI range description</string>
+    <string name="underweight">Underweight</string>
+    <string name="normal_weight">Normal weight</string>
+    <string name="overweight">Overweight</string>
+    <string name="obesity">Obesity</string>
+    <string name="underweight_description">This BMI shows that you are underweight. That is, according to your height, the weight value should be greater in order to have a healthy weight and BMI.</string>
+    <string name="normal_weight_description">This BMI shows that you are on a normal weight. That is, according to your height, the weight value is healthy and so is your BMI. Keep it in this range!</string>
+    <string name="overweight_description">This BMI shows that you are overweight. That is, according to your height, the weight value should be smaller in order to have a healthy weight and BMI.</string>
+    <string name="obesity_description">This BMI shows that you are obese. That is, according to your height, the weight value should be much smaller in order to have a healthy weight and BMI.</string>
 
 </resources>

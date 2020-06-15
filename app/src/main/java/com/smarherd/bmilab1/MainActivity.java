@@ -23,21 +23,62 @@ public class MainActivity extends AppCompatActivity {
     //mode = 0 -> metric type
     //mode = 1 -> imoerial type
     private int mode = 0;
+    private BMICounter bmi;
+    private boolean initiated = false;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        final BMIViewModel mViewModel = new ViewModelProvider(this).get(BMIViewModel.class);
-        mViewModel.mode = mode;
 
         final TextView bmiText = findViewById(R.id.bmi_text);
         final EditText heighText = findViewById(R.id.heighEditText);
         final EditText massText = findViewById(R.id.massEditText);
+        TextView heighTextView = findViewById(R.id.heighText);
+        TextView massTextView = findViewById(R.id.weigthText);
+
         Button countButton = findViewById(R.id.button);
 
-        final BMICounter bmi = new BMICounter();
+        bmi = new BMICounter();
+
+        if (savedInstanceState != null) {
+            bmi.setBmi(savedInstanceState.getDouble("bmi"));
+            bmi.setRange(savedInstanceState.getInt("range"));
+            mode = savedInstanceState.getInt("mode");
+            initiated = savedInstanceState.getBoolean("initiated");
+
+
+            if (mode == 0) {
+                heighTextView.setText(R.string.height_centimeters);
+                massTextView.setText(R.string.weight_kg);
+            }
+            else if (mode == 1) {
+                heighTextView.setText(R.string.height_inches);
+                massTextView.setText(R.string.weight_lbs);
+            }
+
+            if (initiated) {
+                bmiText.setText(Double.toString(bmi.getBmi()));
+
+                switch (bmi.getRange()) {
+                    case 0:
+                        bmiText.setTextColor(Color.BLUE);
+                        break;
+
+                    case 1:
+                        bmiText.setTextColor(Color.GREEN);
+                        break;
+
+                    case 2:
+                        bmiText.setTextColor(Color.YELLOW);
+                        break;
+
+                    case 3:
+                        bmiText.setTextColor(Color.RED);
+                        break;
+                }
+            }
+        }
 
         countButton.setOnClickListener(new View.OnClickListener() {
                @Override
@@ -64,8 +105,6 @@ public class MainActivity extends AppCompatActivity {
                            result = bmi.getImperialBMI();
                            text = Double.toString(result);
                        }
-                       mViewModel.bmi = result;
-                       mViewModel.range = bmi.getRange();
 
                        switch(bmi.getRange()) {
                            case 0:
@@ -84,6 +123,8 @@ public class MainActivity extends AppCompatActivity {
                                bmiText.setTextColor(Color.RED);
                                break;
                        }
+
+                       initiated = true;
                    }
                    bmiText.setText(text);
 
@@ -94,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+                intent.putExtra("bmi", Double.toString(bmi.getBmi()));
+                intent.putExtra("range", bmi.getRange());
                 startActivityForResult(intent, bmi.getRange());
             }
         });
@@ -153,5 +196,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+
+        outState.putDouble("bmi", bmi.getBmi());
+        outState.putInt("range", bmi.getRange());
+        outState.putInt("mode", mode);
+        outState.putBoolean("initiated", initiated);
     }
 }

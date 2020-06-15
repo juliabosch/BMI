@@ -23,6 +23,14 @@ public class BMICounter {
         this.mass = mass;
     }
 
+    public void setBmi(double bmi) {
+        this.bmi = bmi;
+    }
+
+    public void setRange(int range) {
+        this.range = range;
+    }
+
     public double getHeight() {
         return height;
     }
