@@ -134,10 +134,12 @@ public class MainActivity extends AppCompatActivity {
         bmiText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
-                intent.putExtra("bmi", Double.toString(bmi.getBmi()));
-                intent.putExtra("range", bmi.getRange());
-                startActivityForResult(intent, bmi.getRange());
+                if (initiated) {
+                    Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+                    intent.putExtra("bmi", Double.toString(bmi.getBmi()));
+                    intent.putExtra("range", bmi.getRange());
+                    startActivityForResult(intent, bmi.getRange());
+                }
             }
         });
 
