@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">BMI</string>
+    <string name="bmi_value">BMI_VALUE</string>
+    <string name="metric_option">Metric data configuration</string>
+    <string name="imperial_option">Imperial data configuration</string>
+    <string name="height_centimeters">Height [cm]</string>
+    <string name="height_inches">Height [in]</string>
+    <string name="weight_kg">Mass [kg]</string>
+    <string name="weight_lbs">Mass [lbs]</string>
+    <string name="about_text">About author</string>
+    <string name="about_description">The creator of this app is a Spanish Erasmus Program student of Politechnika Wroclawska, Julia Bosch. Started computer science studies on the Politechnic University of Catalunya (Faculty of Informatics of Barcelona)</string>
+    <string name="about_title">About</string>
+    <string name="bmi_title">BMI</string>
+    <string name="dafault_bmi">Your bmi</string>
+    <string name="default_range">Your range</string>
+    <string name="default_description">Your BMI range description</string>
+
+</resources>
